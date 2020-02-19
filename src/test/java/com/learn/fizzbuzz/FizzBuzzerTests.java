@@ -26,16 +26,6 @@ public class FizzBuzzerTests {
     }
 
     @Test
-    public void fizzBuzz_givenThree_ShouldReturnFizz() {
-        //arrange
-        FizzBuzzer sut = new FizzBuzzer();
-        //action
-        String results = sut.fizzBuzz(3);
-        //assert
-        Assert.assertEquals("Fizz", results);
-    }
-
-    @Test
     public void fizzBuzz_givenFour_ShouldReturnFour() {
         //arrange
         FizzBuzzer sut = new FizzBuzzer();
@@ -45,25 +35,6 @@ public class FizzBuzzerTests {
         Assert.assertEquals("4", results);
     }
 
-    @Test
-    public void fizzBuzz_givenFive_ShouldReturnBuzz() {
-        //arrange
-        FizzBuzzer sut = new FizzBuzzer();
-        //action
-        String results = sut.fizzBuzz(5);
-        //assert
-        Assert.assertEquals("Buzz", results);
-    }
-
-    @Test
-    public void fizzBuzz_givenSix_ShouldReturnFizz() {
-        //arrange
-        FizzBuzzer sut = new FizzBuzzer();
-        //action
-        String results = sut.fizzBuzz(6);
-        //assert
-        Assert.assertEquals("Fizz", results);
-    }
 
     @Test
     public void fizzBuzz_givenSeven_ShouldReturnSeven() {
@@ -84,53 +55,6 @@ public class FizzBuzzerTests {
         //assert
         Assert.assertEquals("8", results);
     }
-
-    @Test
-    public void fizzBuzz_givenNine_ShouldReturnFizz() {
-        //arrange
-        FizzBuzzer sut = new FizzBuzzer();
-        //action
-        String results = sut.fizzBuzz(9);
-        //assert
-        Assert.assertEquals("Fizz", results);
-    }
-
-    @Test
-    public void fizzBuzz_givenTen_ShouldReturnBuzz() {
-        //arrange
-        FizzBuzzer sut = new FizzBuzzer();
-        //action
-        String results = sut.fizzBuzz(10);
-        //assert
-        Assert.assertEquals("Buzz", results);
-    }
-
 }
 
 
-class FizzBuzzer {
-
-    public String fizzBuzz(int i) {
-        if (i == 3) {
-            return "Fizz";
-        }
-        if (i == 5) {
-            return "Buzz";
-        }
-
-        if (i == 6) {
-            return "Fizz";
-        }
-
-        if (i == 9) {
-            return "Fizz";
-        }
-
-        if (i == 10) {
-            return "Buzz";
-        }
-
-
-        return String.valueOf(i);
-    }
-}
