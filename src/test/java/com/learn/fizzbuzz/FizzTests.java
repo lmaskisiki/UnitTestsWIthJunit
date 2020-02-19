@@ -32,7 +32,7 @@ public class FizzTests {
     public void fizzBuzz_givenOnlyMultiplesOfThree_ShouldReturnFizz() {
         //arrange
         FizzBuzzer sut = new FizzBuzzer();
-        //action
+        //act
         String results = sut.fizzBuzz(input);
         //assert
         Assert.assertEquals(output, results);

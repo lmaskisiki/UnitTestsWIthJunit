@@ -35,7 +35,7 @@ public class BuzzTests {
     public void fizzBuzz_givenOnlyMultiplesOfFive_ShouldReturnBuzz() {
         //arrange
         FizzBuzzer sut = new FizzBuzzer();
-        //action
+        //act
         String results = sut.fizzBuzz(input);
         //assert
         Assert.assertEquals(output, results);
