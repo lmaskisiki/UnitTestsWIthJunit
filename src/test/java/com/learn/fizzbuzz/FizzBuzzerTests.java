@@ -2,102 +2,73 @@ package com.learn.fizzbuzz;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.Arrays;
+import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
 
 public class FizzBuzzerTests {
 
-    @Test
-    public void fizzBuzz_givenOne_ShouldReturnOne() {
+    @ParameterizedTest
+    @MethodSource("numbers")
+    public void fizzBuzz_givenNumberNotDivisibleByThreeOrFive_ReturnNumber(int input, String expected) {
         //arrange
         FizzBuzzer sut = new FizzBuzzer();
-        //action
-        String results = sut.fizzBuzz(1);
+        //act
+        String actual = sut.fizzBuzz(input);
         //assert
-        Assert.assertEquals("1", results);
+        assertEquals(expected, actual);
     }
 
-    @Test
-    public void fizzBuzz_givenTwo_ShouldReturnTwo() {
+    @ParameterizedTest(name = "{index}. Negative input ({0})")
+    @MethodSource("negativeNumbers")
+    public void fizzBuzz_givenNegativeNumber_ThrowNegativeNumbersNotAllowedException(int input) {
         //arrange
         FizzBuzzer sut = new FizzBuzzer();
         //action
-        String results = sut.fizzBuzz(2);
-        //assert
-        Assert.assertEquals("2", results);
-    }
-
-    @Test
-    public void fizzBuzz_givenFour_ShouldReturnFour() {
-        //arrange
-        FizzBuzzer sut = new FizzBuzzer();
-        //action
-        String results = sut.fizzBuzz(4);
-        //assert
-        Assert.assertEquals("4", results);
-    }
-
-    @Test
-    public void fizzBuzz_givenSeven_ShouldReturnSeven() {
-        //arrange
-        FizzBuzzer sut = new FizzBuzzer();
-        //action
-        String results = sut.fizzBuzz(7);
-        //assert
-        Assert.assertEquals("7", results);
-    }
-
-    @Test
-    public void fizzBuzz_givenEight_ShouldReturnEight() {
-        //arrange
-        FizzBuzzer sut = new FizzBuzzer();
-        //action
-        String results = sut.fizzBuzz(8);
-        //assert
-        Assert.assertEquals("8", results);
-    }
-
-    @Test
-    public void fizzBuzz_givenNegativeNumbers_ThrowNegativeNumbersNotAllowedException_1() {
-        //arrange
-        FizzBuzzer sut = new FizzBuzzer();
-        //action
-        Exception exception = assertThrows(NegativeNumbersNowAllowedException.class, () ->
-                sut.fizzBuzz(-5));
-        assertEquals("Negative numbers are not supported", exception.getMessage());
-    }
-
-    @Test
-    public void fizzBuzz_givenNegativeNumbers_ThrowNegativeNumbersNotAllowedException_2() {
-        //arrange
-        FizzBuzzer sut = new FizzBuzzer();
-        //action
-        Exception exception = assertThrows(NegativeNumbersNowAllowedException.class, () ->
-                sut.fizzBuzz(-10));
-        assertEquals("Negative numbers are not supported", exception.getMessage());
-    }
-
-    @Test
-    public void fizzBuzz_givenNegativeNumbers_ThrowNegativeNumbersNotAllowedException_3() {
-        //arrange
-        FizzBuzzer sut = new FizzBuzzer();
-        //action
-        Exception exception = assertThrows(NegativeNumbersNowAllowedException.class, () ->
-                sut.fizzBuzz(-1000));
-        assertEquals("Negative numbers are not supported", exception.getMessage());
-    }
-
-     //DEVENOTE: Junit @Rule, @Test(expected =  Exception.class)
-    @Test
-    public void fizzBuzz_givenNegativeNumbers_ThrowNegativeNumbersNotAllowedException_5() {
-        //arrange
-        FizzBuzzer sut = new FizzBuzzer();
-        //action
-        Assertions.assertThatThrownBy(() -> sut.fizzBuzz(-10000))
+        Assertions.assertThatThrownBy(() -> sut.fizzBuzz(input))
                 .isInstanceOf(NegativeNumbersNowAllowedException.class)
                 .hasMessage("Negative numbers are not supported");
+    }
+
+
+    @Test
+    public void fizzBuzz_givenFifteen_ShouldReturnFizzBuzz() {
+        //arrange
+        FizzBuzzer sut = new FizzBuzzer();
+        //act
+        String actual = sut.fizzBuzz(15);
+        //assert
+        Assert.assertEquals("FizzBuzz", actual);
+    }
+
+    @Test
+    public void fizzBuzz_givenTwenty_ShouldReturnFizzBuzz() {
+        //arrange
+        FizzBuzzer sut = new FizzBuzzer();
+        //act
+        String actual = sut.fizzBuzz(30);
+        //assert
+        Assert.assertEquals("FizzBuzz", actual);
+    }
+
+    private static Collection<Arguments> numbers() {
+        return Arrays.asList(
+                Arguments.of(1, "1"),
+                Arguments.of(2, "2"),
+                Arguments.of(4, "4"),
+                Arguments.of(11, "11"),
+                Arguments.of(14, "14")
+        );
+    }
+
+    private static Collection<Arguments> negativeNumbers() {
+        return Arrays.asList(Arguments.of(-1), Arguments.of(-10), Arguments.of(-1000));
     }
 }
 

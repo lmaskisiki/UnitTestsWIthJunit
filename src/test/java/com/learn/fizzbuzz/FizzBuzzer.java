@@ -6,33 +6,39 @@ public class FizzBuzzer {
 
         if (inputNumber < 0)
             throw new NegativeNumbersNowAllowedException("Negative numbers are not supported");
-        if (inputNumber == 3) {
+        if (isDivisibleByThreeAndFive(inputNumber)) {
+            return "FizzBuzz";
+        } else if (isDivisibleByThree(inputNumber)) {
             return "Fizz";
-        }
-        if (inputNumber == 5) {
+        } else if (isDivisibleByFive(inputNumber)) {
             return "Buzz";
+        } else {
+            return String.valueOf(inputNumber);
         }
-
-        if (inputNumber == 6) {
-            return "Fizz";
-        }
-
-        if (inputNumber == 9) {
-            return "Fizz";
-        }
-
-        if (inputNumber == 10) {
-            return "Buzz";
-        }
-
-        if (inputNumber == 12) {
-            return "Fizz";
-        }
-
-        if (inputNumber == 20) {
-            return "Buzz";
-        }
-
-        return String.valueOf(inputNumber);
     }
+
+    private boolean isDivisibleByThreeAndFive(int inputNumber) {
+        return ((inputNumber % 3 == 0) && (inputNumber % 5 == 0));
+    }
+
+    private boolean isDivisibleByThree(int inputNumber) {
+        return (inputNumber % 3 == 0);
+    }
+
+    private boolean isDivisibleByFive(int inputNumber) {
+        return (inputNumber % 5 == 0);
+    }
+
+    ////
+//    private boolean isDivisibleByThreeAndFive(int inputNumber) {
+//        return ((inputNumber % 3 == 0) && (inputNumber % 5 == 0));
+//    }
+//
+//    private boolean isDivisibleByThree(int inputNumber) {
+//        return ((inputNumber % 3 == 0) && (inputNumber % 5 != 0));
+//    }
+//
+//    private boolean isDivisibleByFive(int inputNumber) {
+//        return ((inputNumber % 5 == 0) && (inputNumber % 3 != 0));
+//    }
 }
