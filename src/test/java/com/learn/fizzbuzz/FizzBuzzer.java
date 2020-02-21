@@ -3,7 +3,6 @@ package com.learn.fizzbuzz;
 public class FizzBuzzer {
 
     public String fizzBuzz(int inputNumber) {
-
         if (inputNumber < 0)
             throw new NegativeNumbersNowAllowedException("Negative numbers are not supported");
         if (isDivisibleByThreeAndFive(inputNumber)) {
